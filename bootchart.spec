@@ -1,13 +1,13 @@
 Name:           bootchart
 Version:        0.9
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Boot Process Performance Visualization
 License:        GPL
 Url:            http://www.bootchart.org/
 Source0:        http://www.bootchart.org/dist/SOURCES/%name-%version.tar.bz2
 Group:          Monitoring
 Requires:       jpackage-utils, jakarta-commons-cli
-BuildRequires:  ant, jpackage-utils jakarta-commons-cli
+BuildRequires:  ant, java-rpmbuild jakarta-commons-cli
 BuildArch:      noarch
 BuildRoot:      %_tmppath/%name-%version-buildroot
 
