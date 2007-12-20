@@ -9,6 +9,7 @@ Group:          Monitoring
 Requires:       jpackage-utils, jakarta-commons-cli
 BuildRequires:  ant, java-rpmbuild jakarta-commons-cli
 BuildArch:      noarch
+BuildRoot:      %_tmppath/%name-%version-buildroot
 
 
 %description
