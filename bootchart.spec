@@ -6,7 +6,7 @@ License:        GPL
 Url:            http://www.bootchart.org/
 Source0:        http://www.bootchart.org/dist/SOURCES/%name-%version.tar.bz2
 Group:          Monitoring
-Requires:       jpackage-utils, jakarta-commons-cli
+Requires:       jpackage-utils, jakarta-commons-cli, java
 BuildRequires:  ant, java-rpmbuild jakarta-commons-cli
 BuildArch:      noarch
 BuildRoot:      %_tmppath/%name-%version-buildroot
