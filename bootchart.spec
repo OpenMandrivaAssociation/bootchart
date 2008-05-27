@@ -28,6 +28,7 @@ This is the java documentation for %{name}.
 %package logger
 Summary:        Boot logging script for %{name}
 Group:          System/Kernel and hardware
+Suggests:		psacct
 
 %description logger
 The boot logging script for %{name} cant be used through adding
