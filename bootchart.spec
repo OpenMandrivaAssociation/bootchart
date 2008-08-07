@@ -1,6 +1,6 @@
 Name:           bootchart
 Version:        0.9
-Release:        %mkrel 4
+Release:        %mkrel 5
 Summary:        Boot Process Performance Visualization
 License:        GPL
 Url:            http://www.bootchart.org/
