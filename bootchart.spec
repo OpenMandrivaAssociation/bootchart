@@ -1,10 +1,17 @@
 Name:           bootchart
 Version:        0.9
-Release:        %mkrel 5
+Release:        %mkrel 6
 Summary:        Boot Process Performance Visualization
 License:        GPL
 Url:            http://www.bootchart.org/
 Source0:        http://www.bootchart.org/dist/SOURCES/%name-%version.tar.bz2
+Source1:	bootchart.1
+Source2:	bootchartd.1
+Source3:	bootchartd.conf.5
+# (fc) 0.9-6mdv upgrade bootchartd to latest svn release
+Patch0:		bootchart-0.9-svn.patch
+# (fc) 0.9-6mdv fix initrd support (rtp)
+Patch1:		bootchart-0.9-initrd.patch
 Group:          Monitoring
 Requires:       jpackage-utils, jakarta-commons-cli, java
 BuildRequires:  ant, java-rpmbuild jakarta-commons-cli
@@ -38,11 +45,13 @@ by %name.
 
 %prep
 %setup -q
+%patch0 -p1 -b .svn
+%patch1 -p1 -b .initrd
 
 %build
 # Remove the bundled commons-cli
 rm -rf lib/org/apache/commons/cli lib/org/apache/commons/lang
-CLASSPATH=%{_javadir}/commons-cli.jar ant
+CLASSPATH=%{_javadir}/commons-cli.jar %ant
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -64,6 +73,11 @@ install -D -m 755 script/bootchartd $RPM_BUILD_ROOT/sbin/bootchartd
 install -D -m 644 script/bootchartd.conf $RPM_BUILD_ROOT/etc/bootchartd.conf
 install -d -m 755 $RPM_BUILD_ROOT/mnt/bootchartd
 
+# manpages
+install -d -m 755 $RPM_BUILD_ROOT/%{_mandir}/man1 $RPM_BUILD_ROOT/%{_mandir}/man5
+install -m 644 %{SOURCE1} %{SOURCE2} $RPM_BUILD_ROOT/%{_mandir}/man1/
+install -m 644 %{SOURCE3} $RPM_BUILD_ROOT/%{_mandir}/man5/
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -81,6 +95,7 @@ fi
 %doc ChangeLog COPYING INSTALL README TODO lib/LICENSE.cli.txt lib/LICENSE.compress.txt lib/LICENSE.epsgraphics.txt lib/NOTICE.txt
 %{_javadir}/*
 %dir %attr(0755,root,root) %{_bindir}/bootchart
+%{_mandir}/man1/bootchart.1*
 
 %files javadoc
 %defattr(-,root,root,)
@@ -93,3 +108,4 @@ fi
 /sbin/bootchartd
 %config(noreplace) %_sysconfdir/bootchartd.conf
 %dir /mnt/bootchartd
+%{_mandir}/man*/bootchartd*
