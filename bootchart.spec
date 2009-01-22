@@ -1,6 +1,6 @@
 Name:           bootchart
 Version:        0.9
-Release:        %mkrel 6
+Release:        %mkrel 7
 Summary:        Boot Process Performance Visualization
 License:        GPL
 Url:            http://www.bootchart.org/
@@ -12,6 +12,18 @@ Source3:	bootchartd.conf.5
 Patch0:		bootchart-0.9-svn.patch
 # (fc) 0.9-6mdv fix initrd support (rtp)
 Patch1:		bootchart-0.9-initrd.patch
+# (fc) 0.9-7mdv fix bootchart when root fs is readonly
+Patch2:		bootchart-0.9-readonly.patch
+# (fc) 0.9-7mdv detect ldm as a display manager
+Patch3:		bootchart-0.9-ldm.patch
+# (fc) 0.9-7mdv fix runlevel parsing in inittab
+Patch4:		bootchart-0.9-fixrunlevel.patch
+# (fc) 0.9-7mdv fix autostoplogger 
+Patch5:		bootchart-0.9-autostoplogger.patch
+# (fc) 0.9-7mdv enable process accounting
+Patch6:		bootchart-0.9-accounting.patch
+# (fc) 0.9-7mdv enable early_login detection on Mandriva
+Patch7:		bootchart-0.9-early.patch
 Group:          Monitoring
 Requires:       jpackage-utils, jakarta-commons-cli, java
 BuildRequires:  ant, java-rpmbuild jakarta-commons-cli
@@ -47,6 +59,12 @@ by %name.
 %setup -q
 %patch0 -p1 -b .svn
 %patch1 -p1 -b .initrd
+%patch2 -p1 -b .readonly
+%patch3 -p1 -b .ldm
+%patch4 -p1 -b .runlevel
+%patch5 -p1 -b .autostoplogger
+%patch6 -p1 -b .accounting
+%patch7 -p1 -b .early
 
 %build
 # Remove the bundled commons-cli
