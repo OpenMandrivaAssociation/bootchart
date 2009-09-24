@@ -46,6 +46,7 @@ Patch15:	pybootchartgui-r124-fixdefaults.patch
 Patch16:	pybootchartgui-r124-fixformat.patch
 Group:          Monitoring
 BuildRoot:      %_tmppath/%name-%version-buildroot
+BuildRequires: python-devel
 
 
 %description
