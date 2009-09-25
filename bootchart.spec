@@ -1,4 +1,4 @@
-%define pybootchart_rev r124
+%define pybootchartgui_rev r124
 
 Name:           bootchart
 Version:        0.9
@@ -9,7 +9,7 @@ Url:            http://www.bootchart.org/
 Source0:        http://www.bootchart.org/dist/SOURCES/%name-%version.tar.bz2
 Source2:	bootchartd.1
 Source3:	bootchartd.conf.5
-Source4:	http://pybootchartgui.googlecode.com/files/pybootchartgui-%{pybootchart_rev}.tar.bz2
+Source4:	http://pybootchartgui.googlecode.com/files/pybootchartgui-%{pybootchartgui_rev}.tar.bz2
 # (fc) 0.9-6mdv upgrade bootchartd to latest svn release
 Patch0:		bootchart-0.9-svn.patch
 # (fc) 0.9-6mdv fix initrd support (rtp)
@@ -81,7 +81,7 @@ by %name.
 %patch10 -p1 -b .libmnt
 %patch11 -p1 -b .autorender
 %patch12 -p1 -b .unknown-runlevel
-cd pybootchartgui-%{pybootchart_rev}
+cd pybootchartgui-%{pybootchartgui_rev}
 %patch13 -p1 -b .fix-maxy
 %patch14 -p1 -b .svnfixes
 %patch15 -p1 -b .fixdefaults
@@ -106,13 +106,16 @@ install -m 644 %{SOURCE3} $RPM_BUILD_ROOT/%{_mandir}/man5/
 
 # pybootchart
 
-cd pybootchartgui-%{pybootchart_rev}
+cd pybootchartgui-%{pybootchartgui_rev}
+cp -f README README.pybootchartgui
+cp -f COPYING COPYING.pybootchartgui
+cp -f AUTHORS AUTHORS.pybootchartgui
 install -d $RPM_BUILD_ROOT%py_sitedir/pybootchartgui
 cp pybootchartgui/*.py $RPM_BUILD_ROOT%py_sitedir/pybootchartgui
 install -D -m 755 pybootchartgui.py $RPM_BUILD_ROOT%_bindir/pybootchartgui
 pushd $RPM_BUILD_ROOT%py_sitedir/pybootchartgui
-python %py_libdir/py_compile.py *.py
-PYTHONOPTIMIZE=1 python %py_libdir/py_compile.py *.py
+python %py_platlibdir/py_compile.py *.py
+PYTHONOPTIMIZE=1 python %py_platlibdir/py_compile.py *.py
 popd
 
 ln -s pybootchartgui $RPM_BUILD_ROOT%{_bindir}/bootchart
@@ -122,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,)
-%doc ChangeLog COPYING INSTALL README TODO lib/LICENSE.cli.txt lib/LICENSE.compress.txt lib/LICENSE.epsgraphics.txt lib/NOTICE.txt
+%doc ChangeLog COPYING INSTALL README TODO lib/LICENSE.cli.txt lib/LICENSE.compress.txt lib/LICENSE.epsgraphics.txt lib/NOTICE.txt pybootchartgui-%{pybootchartgui_rev}/*.pybootchartgui
 %_bindir/pybootchartgui
 %_bindir/bootchart
 %py_sitedir/pybootchartgui
