@@ -2,7 +2,7 @@
 
 Name:           bootchart
 Version:        0.9
-Release:        %mkrel 9
+Release:        %mkrel 10
 Summary:        Boot Process Performance Visualization
 License:        GPL
 Url:            http://www.bootchart.org/
@@ -61,7 +61,7 @@ Group:          System/Kernel and hardware
 Suggests:	psacct
 
 %description logger
-The boot logging script for %{name} cant be used through adding
+The boot logging script for %{name} can be used through adding
 "init=/sbin/bootchartd" to the kernel command line in GRUB or LILO boot menu.
 It collects data about the boot process that can later be processed
 by %name.
