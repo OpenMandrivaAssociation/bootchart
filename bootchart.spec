@@ -34,8 +34,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%makeinstall_std
+%makeinstall_std PY_LIBDIR=%py_platlibdir 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -44,7 +43,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,)
 %doc COPYING README.* TODO README
 %_bindir/pybootchartgui
-%py_sitedir/pybootchartgui
+%py_platsitedir/pybootchartgui
 /sbin/bootchartd
 %config(noreplace) %_sysconfdir/bootchartd.conf
 %dir /lib/bootchart
