@@ -1,16 +1,14 @@
 %define pybootchartgui_rev r124
 
-%define bootchart2_version 0.0.9
+%define bootchart2_version 0.11.4
 
 Name:           bootchart
 Version:        2.%{bootchart2_version}
-Release:        %mkrel 2
+Release:        %mkrel 1
 Summary:        Boot Process Performance Visualization
 License:        GPLv3
 Url:            http://www.bootchart.org/
 Source0:        http://github.com/mmeeks/bootchart/%{name}2-%{bootchart2_version}.tar.bz2
-# (fc) 2.0.0.9-1mdv git fixes
-Patch0:		bootchart2-0.0.9-gitfixes.patch
 Group:          Monitoring
 BuildRoot:      %_tmppath/%name-%version-buildroot
 BuildRequires: python-devel
@@ -27,7 +25,6 @@ chart.
 
 %prep
 %setup -q -n %{name}2-%{bootchart2_version}
-%patch0 -p1 -b .gitfixes
 
 %build
 make
@@ -47,4 +44,5 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/bootchartd
 %config(noreplace) %_sysconfdir/bootchartd.conf
 %dir /lib/bootchart
+%dir /lib/bootchart/tmpfs
 %dir /lib/bootchart/bootchart-collector
