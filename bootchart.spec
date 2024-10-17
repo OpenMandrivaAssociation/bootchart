@@ -7,7 +7,7 @@ Version:        2.%{bootchart2_version}
 Release:        %mkrel 2
 Summary:        Boot Process Performance Visualization
 License:        GPLv3
-Url:            http://www.bootchart.org/
+Url:            https://www.bootchart.org/
 Source0:        http://github.com/mmeeks/bootchart/%{name}2-%{bootchart2_version}.tar.bz2
 Group:          Monitoring
 BuildRoot:      %_tmppath/%name-%version-buildroot
