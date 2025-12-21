@@ -11,6 +11,7 @@ Url:            https://www.bootchart.org/
 Source0:        http://github.com/mmeeks/bootchart/%{name}2-%{bootchart2_version}.tar.bz2
 Group:          Monitoring
 BuildRoot:      %_tmppath/%name-%version-buildroot
+BuildRequires:	make
 BuildRequires: python-devel
 Obsoletes:	bootchart-logger < 2.0.0.9
 Provides:	bootchart-logger = %{version}-%{release}
