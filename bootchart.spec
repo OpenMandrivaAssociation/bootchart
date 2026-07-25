@@ -4,7 +4,7 @@
 
 Name:           bootchart
 Version:        2.%{bootchart2_version}
-Release:        %mkrel 2
+Release:        3
 Summary:        Boot Process Performance Visualization
 License:        GPLv3
 Url:            https://www.bootchart.org/
